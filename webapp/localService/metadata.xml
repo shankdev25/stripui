@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZUTIL_STRIPE_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ETY_INVDETAILS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="sap_invoice_id"/>
+                </Key>
+                <Property Name="sap_cust_id" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Customer Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="sap_due_date" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Due Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="sap_currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="amount" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="2" sap:unicode="false" sap:label="Amount" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="sap_invoice_id" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Invdocid" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="sap_comapany_code" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Company code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="valid_doc" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Valid document" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="sap_partial_payment" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Partial payment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="sap_message" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Message" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ETY_CUSTOMERDETL" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="sap_cust_id"/>
+                </Key>
+                <Property Name="sap_cust_id" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Customer Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="sap_cust_name" Type="Edm.String" Nullable="false" MaxLength="160" sap:unicode="false" sap:label="Cusomer Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="message" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Message" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="sap_currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="sap_company_code" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Company code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="sap_country_key" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="Currency key" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="amount" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="2" sap:unicode="false" sap:label="Amount" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZUTIL_STRIPE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ETY_INVDETAILSSet" EntityType="ZUTIL_STRIPE_SRV.ETY_INVDETAILS" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ETY_CUSTOMERDETLSet" EntityType="ZUTIL_STRIPE_SRV.ETY_CUSTOMERDETL" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="https://hdd.us.deloitte.com:8443/sap/opu/odata/sap/ZUTIL_STRIPE_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://hdd.us.deloitte.com:8443/sap/opu/odata/sap/ZUTIL_STRIPE_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

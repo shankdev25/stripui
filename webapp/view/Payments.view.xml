@@ -1,0 +1,144 @@
+<mvc:View controllerName="com.deloitte.stripeui.controller.Payments"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <VBox id="vbox" class="sapUiLargeMargin" >
+                <f:SimpleForm id="SimpleFormDisplay354"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>PaymentView.SFInvoice1}"
+					labelSpanXL="3"
+					labelSpanL="3"
+					labelSpanM="3"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="4"
+					emptySpanL="4"
+					emptySpanM="4"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false">
+					<f:content>
+						<Label id="_IDGenLabel1" text="{i18n>PaymentView.LblInvID}" />
+						<Input id="InvID" editable="true" maxLength="12" width="40%" valueLiveUpdate="true"/>
+						<Label id="_IDGenLabel22"/>
+						<HBox id="_IDGenHbox1" alignItems="Center">
+							<Button text="{i18n>PaymentView.BtnPayment}" id="invClick" press="getInvoiceData"></Button>
+						</HBox>
+					</f:content>
+				</f:SimpleForm>
+				<f:SimpleForm id="SimpleForm"
+					visible="false"
+					editable="true"
+					layout="ResponsiveGridLayout"
+                    title="{i18n>PaymentView.InvoiceDetails}"
+					labelSpanXL="3"
+					labelSpanL="3"
+					labelSpanM="3"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="4"
+					emptySpanL="4"
+					emptySpanM="4"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" >
+					<f:content>
+						<Label id="_IDGenLabel2" text="{i18n>PaymentView.LblInvID}"/>
+						<Text id="invoiceIdText" text="{InvoiceData>/sap_invoice_id}" />
+						<Label id="_IDGenLabel3" text="{i18n>PaymentView.LblDuedate}" />
+						<Text id="_IDGenText1" text="{
+                            'path': 'InvoiceData>/sap_due_date', 
+                            'type':'sap.ui.model.type.Date',
+                            'formatOptions': {
+                                'pattern': 'MM/dd/yyyy',
+                                'UTC': true
+                            }
+                        }" />
+						<Label id="_IDGenLabel4" text="{i18n>PaymentView.LblAmount}" />
+						<Input id="_IDGenText3" editable="false" type="Number" width="30%" value="{InvoiceData>/amount}" change="changeAmt" valueLiveUpdate="true"/>
+						<Label id="_IDGenLabel5" />
+						<HBox id="_IDGenHBox1" alignItems="Center">
+							<Button id="_IDGenButton1" text="{i18n>PaymentView.BtnMakePayment}" enabled="false" press="setPayment" type="Accept"></Button>
+						</HBox>
+					</f:content>
+				</f:SimpleForm>
+				<VBox id="iframe" height="50%" visible="false"></VBox>
+            </VBox>
+            <VBox id="CustVbox" class="sapUiLargeMargin">
+                <f:SimpleForm id="CustForm"
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    title="{i18n>PaymentView.SFCustomer1}"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="4"
+                    emptySpanL="4"
+                    emptySpanM="4"
+                    emptySpanS="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false">
+                    <f:content>
+                        <Label id="_IDGenLabel6" text="{i18n>PaymentView.LblCustID}" />
+                        <Input id="CustID" editable="false" width="40%" valueLiveUpdate="true"/>
+                        <Label id="_IDGenLabel7" />
+                        <HBox id="_IDGenHBox2" alignItems="Center">
+                            <Button text="{i18n>PaymentView.BtnPayment}" id="CustClick" press="getCustomerData"></Button>
+                        </HBox>
+                    </f:content>
+                </f:SimpleForm>
+                <f:SimpleForm id="CustDetails"
+                    visible="false"
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    title="{i18n>PaymentView.CustomerDetails}"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="4"
+                    emptySpanL="4"
+                    emptySpanM="4"
+                    emptySpanS="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false" >
+                    <f:content>
+                        <Label id="_IDGenLabel8" text="{i18n>PaymentView.LblCustID}"/>
+                        <Text id="customerIdText" text="{CustomerData>/sap_cust_id}" />
+                        <Label id="_IDGenLabel9" text="{i18n>PaymentView.LblCustName}" />
+                        <Text id="_IDGenText5" text="{CustomerData>/sap_cust_name}" />
+                        <Label id="_IDGenLabel10" text="{i18n>PaymentView.LblAmount}" />
+                        <Input id ="CustAmt" type="Number" value="{CustomerData>/amount}" width="30%" change="Amountchange" valueLiveUpdate="true"
+                            editable="false"/>
+                        <Label id="_IDGenLabel11"  />
+                        <HBox id="_IDGenHBox3" alignItems="Center">
+                            <Button id="_IDGenButton2" text="{i18n>PaymentView.BtnMakePayment}" press="setCustomerPayment" type="Accept"></Button>
+                        </HBox>
+                    </f:content>
+                </f:SimpleForm>
+                <VBox id="iCustomerframe" height="50%" visible="false"></VBox>
+            </VBox>
+            <VBox id="Success" class="sapUiLargeMargin" >
+                <Label id="success_label" text="{i18n>PaymentView.LblPaymntSucceeded}" />		
+            </VBox>
+            <VBox id="Processing" class="sapUiLargeMargin">
+                <Label id="processing_label" text="{i18n>PaymentView.LblPaymntProcessing}"/>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
